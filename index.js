@@ -65,7 +65,19 @@ for(const file of eventFiles)
 
 //		custom code for Grrdle
 
-client.activeGames = new Collection(); //format: {"username", ["dater", "squib", ... ]}
+client.games = new Collection(); 		//format: {  "username", ["dater", "squib", ... ], [ ['y', 'g', null, null, 'y', 'y'], ... ]  }
+client.coopGames = new Collection(); 	//format: {  "serverName", ["dater", "squib", ... ], [ ['y', 'g', null, null, 'y', 'y'], ... ]  }
+client.word = "";
+
+//read in first line of wordList.txt and set word to it
+const fs = require('fs');
+fs.readFile("wordList.txt", function(err, data) {
+	if(err)
+		return console.log("Error reading wordList.txt : " + err);
+	data = data.ToString();
+	const newLinePos = data.indexOf("\n");
+	word = data.substring(0, newLinePos != -1 ? newLinePos : undefined);
+});
 
 const webhooks = new Collection();
 client.on('messageCreate', async (message) =>
