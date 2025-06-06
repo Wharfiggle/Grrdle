@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 
-app.listen(3003, () => 
+app.listen(3005, () => 
 { console.log("Project is running!"); });
 
 app.get("/", (req, res) => 
@@ -70,7 +70,6 @@ client.coopGames = new Collection(); 	//format: {  "serverName", ["dater", "squi
 client.word = "";
 
 //read in first line of wordList.txt and set word to it
-const fs = require('fs');
 fs.readFile("wordList.txt", function(err, data) {
 	if(err)
 		return console.log("Error reading wordList.txt : " + err);
@@ -80,7 +79,7 @@ fs.readFile("wordList.txt", function(err, data) {
 });
 
 const webhooks = new Collection();
-client.on('messageCreate', async (message) =>
+client.on("messageCreate", async (message) =>
 {
 	var isWebhook = false;
 	if(message.webhookId) //is a webhook
